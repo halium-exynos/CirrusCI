@@ -20,7 +20,11 @@ case "$deviceinfo_arch" in
 esac
 
 export ARCH
-export CROSS_COMPILE="${deviceinfo_arch}-linux-android-"
+export CROSS_COMPILE=$TMPDOWN/aarch64-linux-android-4.9/bin/aarch64-linux-android-
+export CROSS_COMPILE_ARM32=$TMPDOWN/arm-linux-androideabi-4.9/bin/arm-linux-androideabi-
+PATH=$$TMPDOWN/linux-x86/clang-r365631c/bin/:$TMPDOWN/aarch64-linux-android-4.9/bin/:$PATH
+export DTC_EXT=${TMPDOWN}/misc/linux-x86/dtc/dtc
+export PATH
 
 cd "$KERNEL_DIR"
 make O="$OUT" $deviceinfo_kernel_defconfig
@@ -28,7 +32,7 @@ make O="$OUT" CC=$CC -j$(nproc --all)
 make O="$OUT" CC=$CC INSTALL_MOD_STRIP=1 INSTALL_MOD_PATH="$INSTALL_MOD_PATH" modules_install
 ls "$OUT/arch/$ARCH/boot/"*Image*
 
-if $deviceinfo_kernel_apply_overlay; then
+if [ -n "$deviceinfo_kernel_apply_overlay" ] && $deviceinfo_kernel_apply_overlay; then
     ${TMPDOWN}/ufdt_apply_overlay "$OUT/arch/arm64/boot/dts/qcom/${deviceinfo_kernel_appended_dtb}.dtb" \
         "$OUT/arch/arm64/boot/dts/qcom/${deviceinfo_kernel_dtb_overlay}.dtbo" \
         "$OUT/arch/arm64/boot/dts/qcom/${deviceinfo_kernel_dtb_overlay}-merged.dtb"

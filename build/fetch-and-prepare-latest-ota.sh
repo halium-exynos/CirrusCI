@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Fetches and prepares latest ota update from system server
+# e.g.: https://system-image.ubports.com/16.04/arm64/android9/devel/fp3
 
 URL='https://system-image.ubports.com'
 
