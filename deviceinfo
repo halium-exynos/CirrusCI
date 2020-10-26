@@ -9,7 +9,7 @@ deviceinfo_kernel_cmdline="console=ttyMSM0,115200,n8 androidboot.console=ttyMSM0
 deviceinfo_kernel_clang_compile="true"
 deviceinfo_kernel_apply_overlay="false"
 deviceinfo_flash_pagesize="2048"
-deviceinfo_flash_offset_base="0x80000000"
+deviceinfo_kernel_base="0x80000000"
 deviceinfo_flash_offset_kernel="0x00008000"
 deviceinfo_flash_offset_ramdisk="0x01000000"
 deviceinfo_flash_offset_second="0x00f00000"
