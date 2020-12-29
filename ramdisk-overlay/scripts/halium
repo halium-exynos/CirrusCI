@@ -171,6 +171,11 @@ mount_android_partitions() {
 		fi
 		mkdir ${mount_root}/cache
 		mount -o bind ${real_userdata}/cache ${mount_root}/cache
+
+		# Create recovery folder for OTA updates
+		if [ ! -d ${mount_root}/cache/recovery ]; then
+			${mount_root}/cache/recovery
+		fi
 	fi
 
 	# Create an appropriate symlink for vendor files
