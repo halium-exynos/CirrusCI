@@ -41,6 +41,9 @@ check_filesystem() {
 }
 
 verify_signature() {
+    # Disabled until we have gpg in recovery
+    return 0
+
     # $1 => validation keyring name
     # $2 => path to validate
 
@@ -277,11 +280,15 @@ USE_SYSTEM_PARTITION=1
 # named in booting normal and recovery modes. Expect fstab to have a system mountpoint or use a fallback.
 if [ "$USE_SYSTEM_PARTITION" -eq 1 ];then
     SYSTEM_PARTITION=$(grep "^[^#]" /etc/fstab | grep "/system_root" | cut -f 1 -d\ )
-    #Fall back to emmc@android if there's no system in fstab
+    # system partition can have "/" as mountpoint instead of "/system_root", try locating by name
     if [ "$SYSTEM_PARTITION" == "" ]; then
-        SYSTEM_PARTITION = "emmc@android"
+        SYSTEM_PARTITION=$(grep "^[^#]" /etc/fstab | grep "by-name/system" | cut -f 1 -d\ )
     fi
 fi
+
+# On systems with A/B partition layout, current slot is provided via cmdline parameter.
+AB_SLOT_SUFFIX=$(grep -o 'androidboot\.slot_suffix=..' /proc/cmdline |  cut -d "=" -f2)
+[ ! -z "$AB_SLOT_SUFFIX" ] && echo "A/B slot system detected! Slot suffix is $AB_SLOT_SUFFIX"
 
 # Process the command file
 FULL_IMAGE=0
@@ -518,6 +525,20 @@ do
                     cat partitions/${part}.img > ${path}
                     sync
                     rm partitions/${part}.img
+                fi
+            done
+
+            # Flash partitions not found in fstab
+            for part in boot dtbo; do
+                if [ -e partitions/${part}.img ]; then
+                    for path in /dev/block/bootdevice/by-name/${part}${AB_SLOT_SUFFIX} /dev/block/bootdevice/by-name/${part}; do
+                        if [ -e partitions/${part}.img ] && [ -e $path ]; then
+                            echo "Flashing ${part} at ${path}"
+                            cat partitions/${part}.img > ${path}
+                            sync
+                            rm partitions/${part}.img
+                        fi
+                    done
                 fi
             done
 
