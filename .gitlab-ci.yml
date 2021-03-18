@@ -11,12 +11,40 @@ build:
     paths:
       - out/*
 
-flashable:
+flashable-dev:
   stage: deploy
   script:
     - apt update
     - apt install -y img2simg jq sudo wget xz-utils
     - ./build/fetch-and-prepare-latest-ota.sh "16.04/arm64/android9/devel" "fp3" ota
+    - mkdir -p out
+    - ./build/system-image-from-ota.sh ota/ubuntu_command out
+  artifacts:
+    paths:
+      - out/boot.img
+      - out/system.img
+  when: manual
+
+flashable-rc:
+  stage: deploy
+  script:
+    - apt update
+    - apt install -y img2simg jq sudo wget xz-utils
+    - ./build/fetch-and-prepare-latest-ota.sh "16.04/arm64/android9/rc" "fp3" ota
+    - mkdir -p out
+    - ./build/system-image-from-ota.sh ota/ubuntu_command out
+  artifacts:
+    paths:
+      - out/boot.img
+      - out/system.img
+  when: manual
+
+flashable-stable:
+  stage: deploy
+  script:
+    - apt update
+    - apt install -y img2simg jq sudo wget xz-utils
+    - ./build/fetch-and-prepare-latest-ota.sh "16.04/arm64/android9/stable" "fp3" ota
     - mkdir -p out
     - ./build/system-image-from-ota.sh ota/ubuntu_command out
   artifacts:
