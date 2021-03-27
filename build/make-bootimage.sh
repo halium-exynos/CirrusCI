@@ -33,4 +33,8 @@ if [ -d "$HERE/ramdisk-overlay" ]; then
     find . | cpio -o -H newc | gzip >> "$RAMDISK"
 fi
 
-mkbootimg --kernel "$KERNEL_OBJ/arch/$ARCH/boot/Image.gz-dtb" --ramdisk "$RAMDISK" --base $deviceinfo_kernel_base --kernel_offset $deviceinfo_flash_offset_kernel --ramdisk_offset $deviceinfo_flash_offset_ramdisk --tags_offset $deviceinfo_flash_offset_tags --cmdline "$deviceinfo_kernel_cmdline" -o "$OUT"
+if [ "$deviceinfo_bootimg_header_version" -eq 2 ]; then
+    mkbootimg --kernel "$KERNEL_OBJ/arch/$ARCH/boot/Image" --ramdisk "$RAMDISK" --dtb "$HERE/$deviceinfo_bootimg_prebuilt_dtb" --base $deviceinfo_flash_offset_base --kernel_offset $deviceinfo_flash_offset_kernel --ramdisk_offset $deviceinfo_flash_offset_ramdisk --tags_offset $deviceinfo_flash_offset_tags --dtb_offset $deviceinfo_flash_offset_dtb --pagesize $deviceinfo_flash_pagesize --cmdline "$deviceinfo_kernel_cmdline" -o "$OUT" --header_version $deviceinfo_bootimg_header_version --os_version $deviceinfo_bootimg_os_version --os_patch_level $deviceinfo_bootimg_os_patch_level
+else
+    mkbootimg --kernel "$KERNEL_OBJ/arch/$ARCH/boot/Image.gz-dtb" --ramdisk "$RAMDISK" --base $deviceinfo_flash_offset_base --kernel_offset $deviceinfo_flash_offset_kernel --ramdisk_offset $deviceinfo_flash_offset_ramdisk --tags_offset $deviceinfo_flash_offset_tags --pagesize $deviceinfo_flash_pagesize --cmdline "$deviceinfo_kernel_cmdline" -o "$OUT"
+fi
