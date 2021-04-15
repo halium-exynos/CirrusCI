@@ -30,7 +30,7 @@ cd "$TMPDOWN"
     git clone https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9 -b pie-gsi --depth 1
     GCC_ARM32_PATH="$TMPDOWN/arm-linux-androideabi-4.9"
 
-    git clone https://android.googlesource.com/platform/prebuilts/misc --depth 1
+    git clone https://android.googlesource.com/platform/prebuilts/misc -b pie-gsi --depth 1
     MISC_PATH="$TMPDOWN/misc"
     
     git clone "$deviceinfo_kernel_source" -b $deviceinfo_kernel_source_branch --depth 1
