@@ -17,7 +17,7 @@ flashable:
   script:
     - apt update
     - apt install -y img2simg jq sudo wget xz-utils
-    - ./build/fetch-and-prepare-latest-ota.sh "16.04/arm64/android9/devel" "fp3" ota
+    - ./build/fetch-and-prepare-latest-ota.sh "16.04/arm64/android9/devel" "X00TD" ota
     - mkdir -p out
     - ./build/system-image-from-ota.sh ota/ubuntu_command out
   artifacts:
@@ -31,7 +31,7 @@ devel-flashable:
   script:
     - apt update
     - apt install -y img2simg jq sudo wget xz-utils
-    - ./build/prepare-fake-ota.sh out/device_fp3.tar.xz ota
+    - ./build/prepare-fake-ota.sh out/device_X00TD.tar.xz ota
     - mkdir -p out
     - ./build/system-image-from-ota.sh ota/ubuntu_command out
   artifacts:
