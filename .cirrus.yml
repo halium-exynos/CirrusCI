@@ -33,7 +33,7 @@ task:
     - ccache -o compression=true
     - ccache -z
     - ./build.sh
-  Cache_script:
+  Cache_background_script:
     - cd /tmp/ci/cirrus
     - ./monitor.sh
   Compile_Kernel2_script:
