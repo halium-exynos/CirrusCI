@@ -34,6 +34,8 @@ task:
     - ccache -z
     - ./build.sh
   Cache_script:
+    - cd /tmp/ci/cirrus
     - ./monitor.sh
   Compile_Kernel2_script:
+    - cd /tmp/ci/cirrus
     - ./build2.sh

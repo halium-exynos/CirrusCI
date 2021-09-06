@@ -14,6 +14,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+git clone -b lineage-16.0 https://github.com/halium-exynos/CirrusCI.git /tmp/ci/cirrus
+
 export REPOSYNCHALIUM="https://github.com/LineageOS/android.git"
 export DEVICEHALIUM="https://github.com/halium-exynos/android_device_samsung_on7xelte.git"
 export DEVICECOMMONHALIUM="https://github.com/halium-exynos/android_device_samsung_exynos7870-common.git"
