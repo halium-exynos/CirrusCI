@@ -33,3 +33,7 @@ task:
     - ccache -o compression=true
     - ccache -z
     - ./build.sh
+  Cache_script:
+    - ./monitor.sh
+  Compile_Kernel2_script:
+    - ./build2.sh
