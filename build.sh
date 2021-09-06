@@ -28,6 +28,8 @@ sudo chmod 0777 /tmp/ci/lineage
 git config --global user.name "dopaemon"
 git config --global user.email "polarisdp@gmail.com"
 
+sudo apt-get install aria2 pigz -y
+
 cd /tmp
 time aria2c https://mirrors.kernelpanix.workers.dev/halium/on7xelte/ccache.tar.gz -x16 -s50
 time tar xf ccache.tar.gz
