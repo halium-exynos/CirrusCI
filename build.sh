@@ -15,7 +15,6 @@
 # limitations under the License.
 
 export REPOSYNCHALIUM="https://github.com/LineageOS/android.git"
-export STARTSYNCHALIUM="repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j$(nproc --all) || repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j$(nproc --all)"
 export DEVICEHALIUM="https://github.com/halium-exynos/android_device_samsung_on7xelte.git"
 export DEVICECOMMONHALIUM="https://github.com/halium-exynos/android_device_samsung_exynos7870-common.git"
 export VENDORHALIUM="https://github.com/halium-exynos/proprietary_vendor_samsung_on7xelte.git"
@@ -37,7 +36,7 @@ rm -rf ccache.tar.gz
 cd /tmp/ci/lineage
 repo init -q --no-repo-verify --depth=1 -u $REPOSYNCHALIUM -b lineage-16.0 -g default,-device,-mips,-darwin,-notdefault
 git clone https://github.com/halium-exynos/local_manifest.git --depth 1 -b lineage-16.0 .repo/local_manifests
-$STARTSYNCHALIUM
+repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j$(nproc --all) && repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j$(nproc --all)
 
 cd /tmp/ci
 export CCACHE_DIR=/tmp/ccache
