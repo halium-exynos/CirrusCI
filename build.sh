@@ -22,6 +22,7 @@ export DEVICECOMMONHALIUM="https://github.com/halium-exynos/android_device_samsu
 export VENDORHALIUM="https://github.com/halium-exynos/proprietary_vendor_samsung_on7xelte.git"
 export SAMSUNGHARDWAREHALIUM="https://github.com/halium-exynos/android_hardware_samsung.git"
 export KERNELHALIUM="https://github.com/halium-exynos/android_kernel_samsung_exynos7870.git"
+export MIRRORSH="https://mirrors.kernelpanix.workers.dev/0:/halium/on7xelte/ccache.tar.gz"
 export BRANCHHALIUM="lineage-16.0"
 
 mkdir -p /tmp/ci/lineage
@@ -33,7 +34,7 @@ git config --global user.email "polarisdp@gmail.com"
 sudo apt-get install aria2 pigz -y
 
 cd /tmp
-time aria2c https://mirrors.kernelpanix.workers.dev/halium/on7xelte/ccache.tar.gz -x16 -s50
+time aria2c $MIRRORSH -x16 -s50
 time tar xf ccache.tar.gz
 rm -rf ccache.tar.gz
 
