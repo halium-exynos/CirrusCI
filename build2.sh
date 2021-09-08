@@ -16,7 +16,7 @@
 
 cd /tmp/ci/lineage
 . build/envsetup.sh
-lunch lineage_on7xelte-userdebug
+lunch lineage_on7xelte-user
 export CCACHE_DIR=/tmp/ccache
 export CCACHE_EXEC=$(which ccache)
 export USE_CCACHE=1
