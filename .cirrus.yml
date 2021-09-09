@@ -40,4 +40,5 @@ task:
     - cd /tmp/ci/cirrus
     - ./build2.sh
   rclone_upload_script:
+    - cd /tmp/ci/cirrus
     - ./rclone.sh
