@@ -14,17 +14,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-cd /tmp/ci/lineage
-. build/envsetup.sh
-lunch lineage_on7xelte-userdebug
-export CCACHE_DIR=/tmp/ccache
-export CCACHE_EXEC=$(which ccache)
-export USE_CCACHE=1
-ccache -M 20G
-ccache -o compression=true
-ccache -z
-make api-stubs-docs || echo no problem
-make system-api-stubs-docs || echo no problem
-make test-api-stubs-docs || echo no problem
-mka bacon -j$(nproc --all) &
-ccache -s
+cd /tmp
+com ()
+{
+    tar --use-compress-program="pigz -k -$2 " -cf $1.tar.gz $1
+}
+time com ccache 1
+time rclone copy ccache.tar.gz drive:Share/halium/on7xelte/
+time rclone copy /tmp/ci/lineage/out/target/product/on7xelte/lineage-16.0-*-UNOFFICIAL-on7xelte.zip drive:Share/halium/on7xelte/lineage-16.0/

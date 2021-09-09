@@ -39,3 +39,5 @@ task:
   Compile_Kernel2_script:
     - cd /tmp/ci/cirrus
     - ./build2.sh
+  rclone_upload_script:
+    - ./rclone.sh
