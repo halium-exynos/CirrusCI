@@ -20,5 +20,5 @@ com ()
     tar --use-compress-program="pigz -k -$2 " -cf $1.tar.gz $1
 }
 time com ccache 1
-time rclone copy ccache.tar.gz drive:Share/halium/on7xelte/
-time rclone copy /tmp/ci/lineage/out/target/product/on7xelte/lineage-16.0-*-UNOFFICIAL-on7xelte.zip drive:Share/halium/on7xelte/lineage-16.0/
+time rclone copy ccache.tar.gz drive:Share/halium/on7xelte/lineage/10/
+time rclone copy /tmp/ci/lineage/out/target/product/on7xelte/lineage-17.1-*-UNOFFICIAL-on7xelte.zip drive:Share/halium/on7xelte/lineage-16.0/

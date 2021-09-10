@@ -20,7 +20,7 @@ task:
   Git_Clone_From_Github_script:
     - git clone -b amd64 --single-branch https://github.com/EternalX-project/aarch64-linux-gnu.git gcc
     - echo "-------------------------------------------------------------------";
-    - git clone -b lineage-16.0 --single-branch https://github.com/halium-exynos/CirrusCI.git origin
+    - git clone -b lineage-17.1 --single-branch https://github.com/halium-exynos/CirrusCI.git origin
   Rclone_Configure_script:
     - mkdir -p ~/.config/rclone
     - echo "$rclone_conf" > ~/.config/rclone/rclone.conf
