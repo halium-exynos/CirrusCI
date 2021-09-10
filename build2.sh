@@ -27,6 +27,6 @@ make api-stubs-docs || echo no problem
 make system-api-stubs-docs || echo no problem
 make test-api-stubs-docs || echo no problem
 mka bacon -j$(nproc --all) &
-sleep 75m
+sleep 65m
 kill %1
 ccache -s
