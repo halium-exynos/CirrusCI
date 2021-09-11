@@ -14,16 +14,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-git clone -b lineage-17.1 https://github.com/halium-exynos/CirrusCI.git /tmp/ci/cirrus
+git clone -b halium-10.0 https://github.com/halium-exynos/CirrusCI.git /tmp/ci/cirrus
 
-export REPOSYNCHALIUM="https://github.com/LineageOS/android.git"
+export REPOSYNCHALIUM="https://github.com/halium/android.git"
 export DEVICEHALIUM="https://github.com/halium-exynos/android_device_samsung_on7xelte.git"
 export DEVICECOMMONHALIUM="https://github.com/halium-exynos/android_device_samsung_exynos7870-common.git"
 export VENDORHALIUM="https://github.com/halium-exynos/proprietary_vendor_samsung_on7xelte.git"
 export SAMSUNGHARDWAREHALIUM="https://github.com/halium-exynos/android_hardware_samsung.git"
 export KERNELHALIUM="https://github.com/halium-exynos/android_kernel_samsung_exynos7870.git"
-export MIRRORSH="https://mirrors.kernelpanix.workers.dev/0:/halium/on7xelte/lineage/10/ccache.tar.gz"
-export BRANCHHALIUM="lineage-17.1"
+export MIRRORSH="https://mirrors.kernelpanix.workers.dev/0:/halium/on7xelte/halium-10/ccache.tar.gz"
+export BRANCHHALIUM="halium-10.0"
 
 mkdir -p /tmp/ci/lineage
 sudo chmod 0777 /tmp/ci/lineage
@@ -39,6 +39,6 @@ time tar xf ccache.tar.gz
 rm -rf ccache.tar.gz
 
 cd /tmp/ci/lineage
-repo init -q --no-repo-verify --depth=1 -u $REPOSYNCHALIUM -b lineage-17.1 -g default,-device,-mips,-darwin,-notdefault
-git clone https://github.com/halium-exynos/local_manifest.git --depth 1 -b lineage-17.1 .repo/local_manifests
+repo init -q --no-repo-verify --depth=1 -u $REPOSYNCHALIUM -b halium-10.0 -g default,-device,-mips,-darwin,-notdefault
+git clone https://github.com/halium-exynos/local_manifest.git --depth 1 -b halium-10.0 .repo/local_manifests
 repo sync -v -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j$(nproc --all) || repo sync -v -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j$(nproc --all)

@@ -18,9 +18,7 @@ task:
     - sudo apt-get update
     - sudo apt-get install -y ccache rclone git-lfs bc bison build-essential ccache curl flex g++-multilib gcc-multilib git gnupg gperf lib32ncurses5-dev lib32readline-dev lib32z1-dev liblz4-tool libncurses5-dev libsdl1.2-dev libssl-dev libwxgtk3.0-dev libxml2 libxml2-utils lzop pngcrush rsync schedtool squashfs-tools xsltproc zip zlib1g-dev pigz
   Git_Clone_From_Github_script:
-    - git clone -b amd64 --single-branch https://github.com/EternalX-project/aarch64-linux-gnu.git gcc
-    - echo "-------------------------------------------------------------------";
-    - git clone -b lineage-17.1 --single-branch https://github.com/halium-exynos/CirrusCI.git origin
+    - git clone -b halium-10.0 --single-branch https://github.com/halium-exynos/CirrusCI.git origin
   Rclone_Configure_script:
     - mkdir -p ~/.config/rclone
     - echo "$rclone_conf" > ~/.config/rclone/rclone.conf
@@ -33,6 +31,9 @@ task:
     - ccache -o compression=true
     - ccache -z
     - ./build.sh
+  Patch_halium_script:
+    - cd /tmp/ci/lineage
+    - hybris-patches/apply-patches.sh --mb
   Cache_background_script:
     - cd /tmp/ci/cirrus
     - ./monitor.sh

@@ -26,7 +26,7 @@ ccache -z
 make api-stubs-docs || echo no problem
 make system-api-stubs-docs || echo no problem
 make test-api-stubs-docs || echo no problem
-mka bacon -j$(nproc --all) # &
-# sleep 75m
-# kill %1
+mka halium-boot -j$(nproc --all) && mka systemimage -j$(nproc --all) &
+sleep 85m
+kill %1
 ccache -s
