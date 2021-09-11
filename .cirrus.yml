@@ -23,5 +23,9 @@ task:
     - cd /home/doraemon/HDD/CI/roms/halium/10/
     - . build/envsetup.sh
     - lunch lineage_on7xelte-userdebug
+    - mka api-stubs-docs -j$(nproc --all)
+    - mka hiddenapi-lists-docs -j$(nproc --all)
+    - mka system-api-stubs-docs -j$(nproc --all)
+    - mka test-api-stubs-docs -j$(nproc --all)
     - mka halium-boot -j$(nproc --all)
     - mka systemimage -j$(nproc --all)
