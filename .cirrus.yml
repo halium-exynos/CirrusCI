@@ -14,7 +14,6 @@ task:
         volumes:
           - /home/doraemon/HDD/CI/roms:/home/doraemon/HDD/halium/10
           - /home/doraemon/HDD/CI/ccache:/home/doraemon/HDD/CI/ccache
-          - /home/doraemon/HDD/CI/.config:/home/doraemon/HDD/CI/.config
 
   info_script:
     - lscpu
