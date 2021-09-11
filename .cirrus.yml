@@ -1,0 +1,20 @@
+env:
+    CIRRUS_CLONE_DEPTH: 1
+    BUILD_HOSTNAME: "halium"
+
+task:
+  name: Build
+  timeout_in: 24h
+  persistent_worker:
+    isolation:
+      container:
+        image: dopaemon/bionic:latest
+        cpu: 4
+        memory: 8G
+        volumes:
+          - /home/doraemon/HDD/CI/roms:/home/doraemon/HDD/halium/10
+          - /home/doraemon/HDD/CI/ccache:/home/doraemon/HDD/CI/ccache
+          - /home/doraemon/HDD/CI/.config:/home/doraemon/HDD/CI/.config
+
+  info_script:
+    - lscpu
