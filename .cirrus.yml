@@ -18,5 +18,5 @@ task:
   info_script:
     - lscpu
   info_disk_script:
-    - ls 10
+    - ls
     - exit
