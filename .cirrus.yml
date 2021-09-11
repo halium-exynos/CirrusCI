@@ -19,6 +19,5 @@ task:
     - lscpu
   info_disk_script:
     - cd /home/doraemon/HDD/CI/roms
-    - mkdir -p test
-    - ls
+    - ls 10
     - exit
