@@ -1,0 +1,34 @@
+env:
+    CIRRUS_CLONE_DEPTH: 1
+    CIRRUS_WORKING_DIR: "/tmp/ci"
+
+    rclone_conf: "ENCRYPTED[d41e7e645df0ba097fd15d17eaf8f35294181ac5c397f1d2481071cc9d2670eac3b5e33f52de2bc21b239fd29be03bc3]"
+
+task:
+  name: master
+  timeout_in: 2h
+  only_if: $CIRRUS_REPO_OWNER == 'halium-exynos'
+  container:
+    image: dopaemon/docker-image:MultiROM
+    cpu: 8
+    memory: 24G
+
+  Install_Packages_Ubuntu_script:
+    - rm -rf *
+    - sudo apt-get update
+    - sudo apt-get install -y ccache rclone git-lfs bc bison build-essential ccache curl flex g++-multilib gcc-multilib git gnupg gperf lib32ncurses5-dev lib32readline-dev lib32z1-dev liblz4-tool libncurses5-dev libsdl1.2-dev libssl-dev libwxgtk3.0-dev libxml2 libxml2-utils lzop pngcrush rsync schedtool squashfs-tools xsltproc zip zlib1g-dev pigz mkbootimg bc build-essential ca-certificates cpio curl git kmod libssl-dev libtinfo5 sudo unzip wget xz-utils img2simg jq xz-utils android-tools-mkbootimg python2
+  Git_Clone_From_Github_script:
+    - git clone -b halium-10.0 --single-branch https://github.com/halium-exynos/CirrusCI.git /tmp/origin
+  Rclone_Configure_script:
+    - mkdir -p ~/.config/rclone
+    - echo "$rclone_conf" > ~/.config/rclone/rclone.conf
+  Compile_Kernel_script:
+    - cd /tmp/origin
+    - ln -sf python2.7 /usr/bin/python
+    - wget https://raw.githubusercontent.com/LineageOS/android_system_core/lineage-17.1/mkbootimg/mkbootimg.py -O /usr/bin/mkbootimg
+    - sudo chmod +x /usr/bin/mkbootimg
+    - ./build.sh
+    - mkdir -p out
+    - ./build/fetch-and-prepare-latest-ota.sh "16.04/arm64/android9/devel" "on7xelte" ota
+    - ./build/system-image-from-ota.sh ota/ubuntu_command out
+    - ls out
