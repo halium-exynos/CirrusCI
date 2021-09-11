@@ -12,7 +12,7 @@ task:
         cpu: 4
         memory: 8G
         volumes:
-          - /tmp/CI:/home/doraemon/HDD/halium
+          - /home/doraemon/HDD/CI/roms:/home/doraemon/HDD/CI/roms
           - /home/doraemon/HDD/CI/ccache:/home/doraemon/HDD/CI/ccache
 
   info_script:
