@@ -19,5 +19,5 @@ task:
     - lscpu
   info_disk_script:
     - cd /home/doraemon/HDD/CI/roms
-    - ls 10
+    - ls halium/10
     - exit
