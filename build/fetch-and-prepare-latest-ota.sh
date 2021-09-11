@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Fetches and prepares latest ota update from system server
-# e.g.: https://system-image.ubports.com/16.04/arm64/android9/devel/X00TD
+# e.g.: https://system-image.ubports.com/16.04/arm64/android9/devel/on7xelte
 
 URL='https://system-image.ubports.com'
 
