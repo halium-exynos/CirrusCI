@@ -16,7 +16,6 @@
 
 cd /tmp
 time rclone copy /tmp/ci/lineage/out/target/product/on7xelte/system.img drive:Share/halium/on7xelte/halium-10/
-time rclone copy /tmp/ci/lineage/out/target/product/on7xelte/halium-boot.img drive:Share/halium/on7xelte/halium-10/
 com ()
 {
     tar --use-compress-program="pigz -k -$2 " -cf $1.tar.gz $1
