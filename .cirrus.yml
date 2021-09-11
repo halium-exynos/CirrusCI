@@ -18,6 +18,6 @@ task:
   info_script:
     - lscpu
   info_disk_script:
-    - cd /tmp/CI/
+    - cd /home/doraemon/HDD/halium
     - ls
     - exit
