@@ -12,11 +12,12 @@ task:
         cpu: 4
         memory: 8G
         volumes:
-          - /home/doraemon/HDD/CI/roms:/home/doraemon/HDD/halium/10
+          - /home/doraemon/HDD/CI/roms:/home/doraemon/HDD/halium
           - /home/doraemon/HDD/CI/ccache:/home/doraemon/HDD/CI/ccache
 
   info_script:
     - lscpu
   info_disk_script:
+    - cd /home/doraemon/HDD/CI/roms
     - ls
     - exit
