@@ -24,7 +24,7 @@ task:
     - hybris-patches/apply-patches.sh --mb
   start_build_halium_script:
     - cd /home/doraemon/HDD/CI/roms/halium/10/
-    - source build/envsetup.sh
+    - . build/envsetup.sh
     - lunch lineage_on7xelte-userdebug
     - mka halium-boot -j$(nproc --all)
     - mka systemimage -j$(nproc --all)
