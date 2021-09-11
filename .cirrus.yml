@@ -4,7 +4,7 @@ env:
 
 task:
   name: Build
-  timeout_in: 365d
+  timeout_in: 8760h
   persistent_worker:
     isolation:
       container:
