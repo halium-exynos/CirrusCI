@@ -19,9 +19,6 @@ task:
     - lscpu
   info_disk_script:
     - ls /home/doraemon/HDD/CI/roms
-  patch_halium_script:
-    - cd /home/doraemon/HDD/CI/roms/halium/10/
-    - hybris-patches/apply-patches.sh --mb
   start_build_halium_script:
     - cd /home/doraemon/HDD/CI/roms/halium/10/
     - . build/envsetup.sh
