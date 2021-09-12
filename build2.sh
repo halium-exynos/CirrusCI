@@ -26,6 +26,8 @@ ccache -z
 make api-stubs-docs || echo no problem
 make system-api-stubs-docs || echo no problem
 make test-api-stubs-docs || echo no problem
+mkdir -p out/target/product/on7xelte/recovery/root/system/etc/
+cp -rv device/samsung/universal7870-common/rootdir/etc/recovery.fstab out/target/product/on7xelte/recovery/root/system/etc/
 mka systemimage -j$(nproc --all) &
 sleep 85m
 kill %1
