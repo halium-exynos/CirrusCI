@@ -1,0 +1,37 @@
+env:
+    CIRRUS_CLONE_DEPTH: 1
+    BUILD_HOSTNAME: "halium"
+
+task:
+  name: Halium
+  timeout_in: 8760h
+  persistent_worker:
+    isolation:
+      container:
+        image: dopaemon/bionic:latest
+        cpu: 4
+        memory: 8G
+        volumes:
+          - /home/doraemon/HDD/CI/roms:/home/doraemon/HDD/CI/roms
+          - /home/doraemon/HDD/CI/ccache:/home/doraemon/HDD/CI/ccache
+
+  info_script:
+    - lscpu
+  info_disk_script:
+    - ls /home/doraemon/HDD/CI/roms
+  Install_Packages_Ubuntu_script:
+    - sudo apt-get update
+    - sudo apt-get install -y ccache rclone git-lfs bc bison build-essential ccache curl flex g++-multilib gcc-multilib git gnupg gperf lib32ncurses5-dev lib32readline-dev lib32z1-dev liblz4-tool libncurses5-dev libsdl1.2-dev libssl-dev libwxgtk3.0-dev libxml2 libxml2-utils lzop pngcrush rsync schedtool squashfs-tools xsltproc zip zlib1g-dev pigz mkbootimg bc build-essential ca-certificates cpio curl git kmod libssl-dev libtinfo5 sudo unzip wget xz-utils img2simg jq xz-utils android-tools-mkbootimg python2.7
+  Git_Clone_From_Github_script:
+    - echo "git clone -b halium-10.0 --single-branch https://github.com/halium-exynos/CirrusCI.git /home/doraemon/HDD/CI/roms/halium/boot/10"
+  Build_boot_script:
+    - cd /home/doraemon/HDD/CI/roms/halium/boot/10
+    - sudo rm -rf out
+    - sudo ln -sf python2.7 /usr/bin/python
+    - sudo wget https://raw.githubusercontent.com/LineageOS/android_system_core/lineage-17.1/mkbootimg/mkbootimg.py -O /usr/bin/mkbootimg
+    - sudo chmod +x /usr/bin/mkbootimg
+    - ./build.sh
+    - mkdir -p out
+    - echo "./build/prepare-fake-ota.sh out/device_on7xelte.tar.xz ota" >> /dev/null
+    - echo "./build/system-image-from-ota.sh ota/ubuntu_command out" >> /dev/null
+    - ls out
