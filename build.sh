@@ -42,3 +42,5 @@ cd /tmp/ci/lineage
 repo init -q --no-repo-verify --depth=1 -u $REPOSYNCHALIUM -b halium-10.0 -g default,-device,-mips,-darwin,-notdefault
 git clone https://github.com/halium-exynos/local_manifest.git --depth 1 -b halium-10.0 .repo/local_manifests
 repo sync -v -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j$(nproc --all) || repo sync -v -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j$(nproc --all)
+mkdir -p out
+cp -rv device/samsung/universal7870-common/rootdir/etc/recovery.fstab out/target/product/on7xelte/recovery/root/system/etc/
