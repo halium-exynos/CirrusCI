@@ -17,7 +17,7 @@ task:
 
   info_script:
     - lscpu
-  info_disk_script:
-    - cd /home/doraemon/HDD/CI/roms
-    - ls halium/10
-    - exit
+  repo_sync_script:
+    - cd /home/doraemon/HDD/CI/roms/halium/9
+    - repo init -q --no-repo-verify --depth=1 -u https://github.com/halium/android.git -b halium-9.0 -g default,-device,-mips,-darwin,-notdefault
+    - repo sync -v -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j$(nproc --all) || repo sync -v -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j$(nproc --all)
