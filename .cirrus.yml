@@ -23,7 +23,9 @@ task:
     - sudo apt-get update
     - sudo apt-get install -y ccache rclone git-lfs bc bison build-essential ccache curl flex g++-multilib gcc-multilib git gnupg gperf lib32ncurses5-dev lib32readline-dev lib32z1-dev liblz4-tool libncurses5-dev libsdl1.2-dev libssl-dev libwxgtk3.0-dev libxml2 libxml2-utils lzop pngcrush rsync schedtool squashfs-tools xsltproc zip zlib1g-dev pigz mkbootimg bc build-essential ca-certificates cpio curl git kmod libssl-dev libtinfo5 sudo unzip wget xz-utils img2simg jq xz-utils android-tools-mkbootimg python2.7
   Git_Clone_From_Github_script:
-    - echo "git clone -b halium-10.0 --single-branch https://github.com/halium-exynos/CirrusCI.git /home/doraemon/HDD/CI/roms/halium/boot/10"
+    - rm -rf /home/doraemon/HDD/CI/roms/halium/boot/10
+    - echo "git clone -b halium-10.0 --single-branch https://github.com/halium-exynos/CirrusCI.git /home/doraemon/HDD/CI/roms/halium/boot/10" >> /dev/null
+    - git clone -b halium-10.0-boot-CI --single-branch https://github.com/halium-exynos/CirrusCI.git /home/doraemon/HDD/CI/roms/halium/boot/10
   Build_boot_script:
     - cd /home/doraemon/HDD/CI/roms/halium/boot/10
     - sudo rm -rf out
