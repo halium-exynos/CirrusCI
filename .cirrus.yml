@@ -9,6 +9,7 @@ task:
     isolation:
       container:
         image: dopaemon/bionic:latest
+	privileged: true
         cpu: 4
         memory: 8G
         volumes:
@@ -32,6 +33,6 @@ task:
     - sudo ln -sf python2.7 /usr/bin/python
     - sudo wget https://raw.githubusercontent.com/LineageOS/android_system_core/lineage-17.1/mkbootimg/mkbootimg.py -O /usr/bin/mkbootimg
     - sudo chmod +x /usr/bin/mkbootimg
+    - ./build.sh
     - ./build/prepare-fake-ota.sh out/device_on7xelte.tar.xz ota
-    - mkdir -p out
     - ./build/system-image-from-ota.sh ota/ubuntu_command out
