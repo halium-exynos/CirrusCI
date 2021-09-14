@@ -41,6 +41,8 @@ rm -rf ccache.tar.gz
 cd /tmp/ci/lineage
 repo init -q --no-repo-verify --depth=1 -u $REPOSYNCHALIUM -b halium-10.0 -g default,-device,-mips,-darwin,-notdefault
 repo sync -v -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j$(nproc --all) || repo sync -v -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j$(nproc --all)
-git clone -b halium-10.0 --single-branch https://github.com/halium-exynos/android_device_halium_halium.git device/halium/halium_arm64\
+git clone -b halium-10.0 --single-branch https://github.com/halium-exynos/android_device_halium_halium.git device/halium/halium_arm64
 ./halium/devices/setup halium_arm64
+rm -rvf vendor/vndk
+git clone -b master https://github.com/erfanoabdi/vendor_vndk.git vendor/vndk
 mkdir -p out
