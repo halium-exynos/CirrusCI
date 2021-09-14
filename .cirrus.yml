@@ -34,7 +34,8 @@ task:
     - sudo wget https://raw.githubusercontent.com/LineageOS/android_system_core/lineage-17.1/mkbootimg/mkbootimg.py -O /usr/bin/mkbootimg
     - sudo chmod +x /usr/bin/mkbootimg
     - export ANDROID_MAJOR_VERSION=q
-    - export PLATFORM_VERSION=10.0
+    - export PLATFORM_VERSION=10
+    - ./mount.sh
     - ./build.sh
     - ./build/prepare-fake-ota.sh out/device_on7xelte.tar.xz ota
     - ./build/system-image-from-ota.sh ota/ubuntu_command out
