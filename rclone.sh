@@ -15,10 +15,10 @@
 # limitations under the License.
 
 cd /tmp
-time rclone copy /tmp/ci/lineage/out/target/product/on7xelte/system.img drive:Share/halium/on7xelte/halium-10/
+time rclone copy /tmp/ci/lineage/out/target/product/halium_arm64/android-rootfs.img drive:Share/halium/GSI/halium-10.0-arm64/
 com ()
 {
     tar --use-compress-program="pigz -k -$2 " -cf $1.tar.gz $1
 }
 time com ccache 1
-time rclone copy ccache.tar.gz drive:Share/halium/on7xelte/halium-10/
+time rclone copy ccache.tar.gz drive:Share/halium/GSI/halium-10.0-arm64/
