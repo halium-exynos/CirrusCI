@@ -9,7 +9,7 @@ task:
     isolation:
       container:
         image: dopaemon/bionic:latest
-	privileged: true
+        privileged: true
         cpu: 4
         memory: 8G
         volumes:
