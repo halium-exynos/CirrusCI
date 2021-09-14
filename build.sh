@@ -22,7 +22,7 @@ export DEVICECOMMONHALIUM="https://github.com/halium-exynos/android_device_samsu
 export VENDORHALIUM="https://github.com/halium-exynos/proprietary_vendor_samsung_on7xelte.git"
 export SAMSUNGHARDWAREHALIUM="https://github.com/halium-exynos/android_hardware_samsung.git"
 export KERNELHALIUM="https://github.com/halium-exynos/android_kernel_samsung_exynos7870.git"
-export MIRRORSH="https://mirrors.kernelpanix.workers.dev/0:/halium/on7xelte/halium-10/ccache.tar.gz"
+export MIRRORSH="https://mirrors.kernelpanix.workers.dev/0:/halium/GSI/halium-10.0-arm64/ccache.tar.gz"
 export BRANCHHALIUM="halium-10.0"
 
 mkdir -p /tmp/ci/lineage
