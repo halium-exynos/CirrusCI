@@ -32,5 +32,6 @@ task:
     - export PLATFORM_VERSION=10
     - sudo ./mount.sh
     - ./build.sh
+    - sudo -s
     - ./build/prepare-fake-ota.sh out/device_on7xelte.tar.xz ota
     - ./build/system-image-from-ota.sh ota/ubuntu_command out
