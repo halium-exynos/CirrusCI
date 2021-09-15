@@ -3,22 +3,17 @@ env:
     BUILD_HOSTNAME: "halium"
 
 task:
-  name: Halium
-  timeout_in: 8760h
-  persistent_worker:
-    isolation:
-      container:
-        image: dopaemon/bionic:latest
-        privileged: true
-        cpu: 4
-        memory: 8G
-        volumes:
-          - /home/doraemon/HDD/CI/roms:/home/doraemon/HDD/CI/roms
-          - /home/doraemon/HDD/CI/ccache:/home/doraemon/HDD/CI/ccache
+  name: Integration Tests (x86)
+  container:
+    image: dopaemon/bionic:latest
+    kvm: true
+    cpu: 4
+    memory: 8G
 
   info_script:
     - lscpu
   info_disk_script:
+    - mkdir -p /home/doraemon/HDD/CI/roms/halium/boot/
     - ls /home/doraemon/HDD/CI/roms
   Install_Packages_Ubuntu_script:
     - sudo apt-get update
